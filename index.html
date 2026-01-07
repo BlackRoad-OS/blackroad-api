@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackRoad API - Developer Portal</title>
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --amber: #F5A623;
+            --hot-pink: #FF1D6C;
+            --electric-blue: #2979FF;
+            --violet: #9C27B0;
+            --phi: 1.618;
+            --space-xs: 8px;
+            --space-sm: 13px;
+            --space-md: 21px;
+            --space-lg: 34px;
+            --space-xl: 55px;
+            --space-2xl: 89px;
+            --space-3xl: 144px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            line-height: 1.618;
+            background: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg,
+                var(--amber) 0%,
+                var(--hot-pink) 38.2%,
+                var(--violet) 61.8%,
+                var(--electric-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-lg);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h2 {
+            color: var(--hot-pink);
+            font-size: 1.5rem;
+            margin: var(--space-xl) 0 var(--space-md);
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--space-md);
+            font-size: 1.1rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-md);
+            background: linear-gradient(135deg, var(--hot-pink), var(--violet));
+            border-radius: 21px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: var(--space-md) 0;
+        }
+
+        .endpoint-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            border-radius: var(--space-md);
+            padding: var(--space-lg);
+            margin: var(--space-md) 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .endpoint-card:hover {
+            border-color: var(--hot-pink);
+            transform: translateY(-4px);
+            box-shadow: 0 13px 34px rgba(255, 29, 108, 0.2);
+        }
+
+        .method {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: var(--space-sm);
+        }
+
+        .method-get { background: var(--electric-blue); }
+        .method-post { background: var(--hot-pink); }
+        .method-put { background: var(--amber); color: var(--black); }
+        .method-delete { background: var(--violet); }
+
+        code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            color: var(--amber);
+        }
+
+        a {
+            color: var(--electric-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--hot-pink);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(21px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            margin-top: var(--space-2xl);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BlackRoad API</h1>
+        <p class="status-badge">🟢 Coming Soon</p>
+
+        <p>
+            Welcome to the BlackRoad API developer portal. This API provides programmatic
+            access to BlackRoad OS services, quantum computing resources, and AI infrastructure.
+        </p>
+
+        <h2>Planned Endpoints</h2>
+
+        <div class="endpoint-card">
+            <span class="method method-get">GET</span>
+            <code>/api/v1/status</code>
+            <p>Get system status and health metrics</p>
+        </div>
+
+        <div class="endpoint-card">
+            <span class="method method-post">POST</span>
+            <code>/api/v1/quantum/compute</code>
+            <p>Submit quantum computation jobs</p>
+        </div>
+
+        <div class="endpoint-card">
+            <span class="method method-get">GET</span>
+            <code>/api/v1/agents</code>
+            <p>List available AI agents</p>
+        </div>
+
+        <div class="endpoint-card">
+            <span class="method method-post">POST</span>
+            <code>/api/v1/agents/{id}/execute</code>
+            <p>Execute AI agent with specified parameters</p>
+        </div>
+
+        <h2>Documentation</h2>
+        <p>
+            Full API documentation will be available at
+            <a href="https://docs.blackroad.io">docs.blackroad.io</a>
+        </p>
+
+        <h2>Authentication</h2>
+        <p>
+            API access requires authentication via OAuth 2.0 or API keys.
+            Register at <a href="https://console.blackroad.io">console.blackroad.io</a>
+        </p>
+
+        <footer>
+            <p>BlackRoad OS &copy; 2026 | <a href="https://blackroad.io">blackroad.io</a></p>
+        </footer>
+    </div>
+</body>
+</html>

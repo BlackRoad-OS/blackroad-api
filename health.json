@@ -1,0 +1,16 @@
+{
+  "status": "healthy",
+  "service": "blackroad-api",
+  "version": "1.0.0-preview",
+  "timestamp": "{{TIMESTAMP}}",
+  "uptime": "operational",
+  "endpoints": {
+    "total": 8,
+    "planned": 8,
+    "active": 0
+  },
+  "dependencies": {
+    "cloudflare": "connected",
+    "github": "connected"
+  }
+}

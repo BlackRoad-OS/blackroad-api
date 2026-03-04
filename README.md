@@ -5,10 +5,10 @@
 | Check | Status |
 |---|---|
 | Cloudflare Pages deployment | ✅ Pinned SHA — passes org policy |
-| Cloudflare Worker (`/api/v1/health`, `/api/v1/status`) | ✅ Deployed via `wrangler-action@v3.14.1` |
+| Cloudflare Worker (`/api/v1/health`, `/api/v1/status`) | ✅ Deployed via Cloudflare `wrangler-action` (pinned SHA in workflow) |
 | CodeQL security analysis | ✅ Upgraded to v4, pinned SHA |
 | Lighthouse CI | ✅ Upgraded to v12, pinned SHA, runs after deploy |
-| PR automerge | ✅ Enabled via `peter-evans/enable-pull-request-automerge@v3` |
+| PR automerge | ✅ Enabled via `peter-evans/enable-pull-request-automerge` (pinned SHA in workflow) |
 | All GitHub Actions pinned to full commit SHA | ✅ Org policy satisfied |
 
 [![Deploy to Cloudflare Pages](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/deploy.yml)

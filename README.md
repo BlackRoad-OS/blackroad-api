@@ -76,7 +76,7 @@ wrangler deploy
 
 ## 🔌 Cloudflare Worker (API)
 
-The `worker/index.js` Worker handles all `/api/*` routes and runs on
+The `worker/index.js` Worker handles all `/api/v1/*` routes and runs on
 Cloudflare's edge network for low-latency, long-running task support.
 
 **Active endpoints (Worker):**

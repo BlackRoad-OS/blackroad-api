@@ -17,10 +17,10 @@ jobs:
     name: Deploy to Cloudflare Pages
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/pages-action@f0a1cd58cd66095dee69bfa18fa5efd1dde93bca # v1.5.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -28,15 +28,35 @@ jobs:
           directory: .
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-  lighthouse:
+  workers:
     runs-on: ubuntu-latest
-    name: Lighthouse CI
+    permissions:
+      contents: read
+    name: Deploy Cloudflare Worker
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Deploy Worker via Wrangler
+        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3.14.1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    name: Lighthouse CI
+    needs: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v10
+        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           urls: |
             https://blackroad-api.pages.dev

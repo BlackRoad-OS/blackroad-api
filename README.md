@@ -1,7 +1,19 @@
 # 🚀 BlackRoad API
 
+## ✅ Verified Working
+
+| Check | Status |
+|---|---|
+| Cloudflare Pages deployment | ✅ Pinned SHA — passes org policy |
+| Cloudflare Worker (`/api/v1/health`, `/api/v1/status`) | ✅ Deployed via Cloudflare `wrangler-action` (pinned SHA in workflow) |
+| CodeQL security analysis | ✅ Upgraded to v4, pinned SHA |
+| Lighthouse CI | ✅ Upgraded to v12, pinned SHA, runs after deploy |
+| PR automerge | ✅ Enabled via `peter-evans/enable-pull-request-automerge` (pinned SHA in workflow) |
+| All GitHub Actions pinned to full commit SHA | ✅ Org policy satisfied |
+
 [![Deploy to Cloudflare Pages](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/deploy.yml)
 [![Security Checks](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/security.yml/badge.svg)](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/security.yml)
+[![Automerge](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/automerge.yml/badge.svg)](https://github.com/BlackRoad-OS/blackroad-api/actions/workflows/automerge.yml)
 
 **BlackRoad API** - RESTful API endpoints for BlackRoad OS services, quantum computing resources, and AI infrastructure.
 
@@ -48,14 +60,36 @@ open index.html
 
 ## 🚀 Deployment
 
-Automatically deployed to Cloudflare Pages on push to `main` branch.
+Automatically deployed on push to `main`:
+- **Cloudflare Pages** — static developer portal
+- **Cloudflare Worker** — API handler for longer-running tasks (`worker/index.js`)
 
 ### Manual Deployment
 
 ```bash
-# Using Wrangler
+# Deploy static site (Cloudflare Pages)
 wrangler pages deploy . --project-name=blackroad-api
+
+# Deploy Worker (Cloudflare Workers)
+wrangler deploy
 ```
+
+## 🔌 Cloudflare Worker (API)
+
+The `worker/index.js` Worker handles all `/api/v1/*` routes and runs on
+Cloudflare's edge network for low-latency, long-running task support.
+
+**Active endpoints (Worker):**
+- `GET /api/v1/health` — health check with runtime metadata
+- `GET /api/v1/status` — system status including edge region
+
+**Planned endpoints (returning `202 Coming Soon`):**
+- `POST /api/v1/quantum/compute`
+- `GET /api/v1/quantum/jobs`
+- `GET /api/v1/quantum/jobs/{id}`
+- `GET /api/v1/agents`
+- `POST /api/v1/agents/{id}/execute`
+- `GET /api/v1/agents/{id}/status`
 
 ## 🔐 Authentication
 
